@@ -24,10 +24,19 @@ def channel_last(img):
     return rearrange(img, 'c h w -> h w c')
 
 def normalize(img):
+    """
+    Normalize the input image.
+
+    Args:
+        img (numpy.ndarray): The input image.
+
+    Returns:
+        torch.Tensor: The normalized image.
+    """
     if img.shape[-1] == 3:
         img = rearrange(img, 'h w c -> c h w')
     img = torch.tensor(img)
-    img = img * 2.0 - 1.0 # to -1 ~ 1
+    img = img * 2.0 - 1.0  # to -1 ~ 1
     return img
 
 def wandb_init(config):
